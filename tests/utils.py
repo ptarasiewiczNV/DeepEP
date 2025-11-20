@@ -18,6 +18,8 @@ def init_dist(local_rank: int, num_local_ranks: int):
     num_nodes = int(os.getenv('WORLD_SIZE', 1))
     node_rank = int(os.getenv('RANK', 0))
 
+    print(f"{ip=}, {port=}, {num_nodes=}, {node_rank=}")
+
     sig = inspect.signature(dist.init_process_group)
     params = {
         'backend': 'nccl',
