@@ -392,5 +392,8 @@ if __name__ == '__main__':
         args.num_topk_groups = min(num_nodes, 4)
 
     num_processes = args.num_processes
+    print("Spawning processes...")
+    for envvar in ("WORLD_SIZE", "MASTER_ADDR", "MASTER_PORT", "RANK"):
+        print(f"{os.getenv(envvar)=}")
     print(f"{num_processes=}, {args=}")
     torch.multiprocessing.spawn(test_loop, args=(num_processes, args), nprocs=num_processes)
